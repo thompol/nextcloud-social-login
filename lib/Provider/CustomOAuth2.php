@@ -44,7 +44,9 @@ class CustomOAuth2 extends OAuth2
             $response = $response->ocs->data;
         }
         if (!isset($response->identifier)) {
-            $response->identifier = $response->id
+            // thom: user_login is the username received from the oauth/me endpoint.
+            $response->identifier = $response->user_login
+                ?? $response->id
                 ?? $response->ID
                 ?? $response->data->id
                 ?? $response->user_id
