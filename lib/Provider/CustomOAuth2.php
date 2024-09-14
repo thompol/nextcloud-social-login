@@ -66,6 +66,11 @@ class CustomOAuth2 extends OAuth2
             ?? null
         ;
 
+        // thom: get user email.
+        $response->email = $response->user_email
+            ?? null
+        ;
+
         $data = new Data\Collection($response);
 
         if (!$data->exists('identifier')) {
