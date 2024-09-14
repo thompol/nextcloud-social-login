@@ -459,10 +459,18 @@ class ProviderService
         if ($provider === 'telegram') {
             $provider = 'tg'; //For backward compatibility
         }
+        // thom: do not use $provider . '-' prefix and check if username is valid.
+        if (ctype_lower($profileId)) {
+            $uid = $profileId;
+        } else {
+            throw new LoginException(sprintf('Username is invalid. Provided username: %s', $profileId));
+        }
+        /*
         $uid = $provider.'-'.$profileId;
         if (strlen($uid) > 64 || !preg_match('#^[a-z0-9_.@-]+$#i', $profileId)) {
             $uid = $provider.'-'.md5($profileId);
         }
+        */
         return $this->login($uid, $profile, $provider.'-');
     }
 
