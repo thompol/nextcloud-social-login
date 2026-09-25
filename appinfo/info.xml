@@ -5,7 +5,7 @@
     <name>RIC Login</name>
     <summary>RIC SSO via OAuth</summary>
     <description>Custom version for RIC of the nextcloud-social-login plugin that omits the $provider prefix.</description>
-    <version>6.5.4</version>
+    <version>6.5.5</version>
     <licence>agpl</licence>
     <author>thompol - customized by Thom Pol</author>
     <namespace>SocialLogin</namespace>
