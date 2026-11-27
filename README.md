@@ -1,3 +1,33 @@
+# RIC fork: read this first
+
+This is the RIC fork of [zorn-v/nextcloud-social-login](https://github.com/zorn-v/nextcloud-social-login).
+The `ric-customizations` branch is an upstream release tag plus the RIC commits on top:
+
+- RIC branding in `appinfo/info.xml`
+- user id and email taken from the `user_login` and `user_email` fields of the RIC OAuth endpoint
+- the bare username as Nextcloud uid, without the provider prefix
+
+**Install it only as a git checkout.** The fork keeps upstream's app id, `sociallogin`, so
+Nextcloud sees every newer upstream release in the app store as an update for it. `occ upgrade`
+installs those updates automatically, and so do the admin UI and `occ app:update`. That
+replaces the fork with upstream, after which nobody's login matches their account. Nextcloud
+skips update checks for apps whose directory contains `.git/`, which is what keeps the fork
+in place:
+
+```bash
+git clone --branch ric-customizations https://github.com/thompol/nextcloud-social-login.git sociallogin
+```
+
+Then move `sociallogin` into `custom_apps/`. To update, `git pull` in that directory and run
+`occ upgrade`. Never update it from the app store. The full procedure for the RIC instance is
+in ric-infrastructure, `docs/services/nextcloud.md`.
+
+To move to a new upstream release, rebase the RIC commits onto its tag.
+
+The upstream README follows.
+
+---
+
 # Social Login
 
 Make it possible to create users and log in via Telegram, OAuth, or OpenID.
